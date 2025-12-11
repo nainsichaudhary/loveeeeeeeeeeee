@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Babyyyyyyyyy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffdde1;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 40px;
+            color: #c90076;
+            font-size: 40px;
+        }
+        #btn {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #ff4b91;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #btn:hover {
+            background: #ff2d75;
+        }
+        .heart {
+            position: absolute;
+            color: #ff5fa2;
+            font-size: 25px;
+            animation: floatUp 4s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-500px) scale(1.8); opacity: 0; }
+        }
+        #surpriseBox {
+            margin-top: 40px;
+            font-size: 24px;
+            color: #c90076;
+            display: none;
+        }
+        #photo {
+            width: 200px;
+            margin-top: 20px;
+            border-radius: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>MY babyyyyyyy❤️</h1>
+    <button id="btn">Show me your💖</button>
+    <div id="surpriseBox"></div>
+    <img id="photo" src="https://i.imgur.com/3G3Q2QO.jpeg" />
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById("btn");
+            const surprise = document.getElementById("surpriseBox");
+            const photo = document.getElementById("photo");
+            const music = document.getElementById("bgMusic");
+
+            let step = 0;
+
+            btn.addEventListener("click", () => {
+                if (music.paused) {
+                    music.volume = 0.5;
+                    music.play().catch(() => console.log('Audio play blocked'));
+                }
+
+                step++;
+                if (step === 1) {
+                    surprise.style.display = "block";
+                    surprise.innerHTML = "biggggg 💞";
+                } else if (step === 2) {
+                    surprise.innerHTML = "juiccyyyy 💗";
+                } else if (step === 3) {
+                    photo.style.display = "block";
+                    surprise.innerHTML = "hard dickkkk 💕";
+                } else {
+                    surprise.innerHTML = "I Love You Forever ❤️";
+                }
+
+                createHearts();
+            });
+
+            function createHearts() {
+                for (let i = 0; i < 10; i++) {
+                    const heart = document.createElement("div");
+                    heart.classList.add("heart");
+                    heart.innerHTML = "❤️";
+                    heart.style.left = Math.random() * window.innerWidth + "px";
+                    heart.style.top = window.innerHeight + "px";
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 4000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
